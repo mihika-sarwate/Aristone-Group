@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" fill="none">
+  <rect width="1200" height="900" fill="#F8F5EE"/>
+  <rect x="90" y="90" width="1020" height="720" stroke="#222A36" stroke-width="12"/>
+  <rect x="130" y="130" width="260" height="240" stroke="#222A36" stroke-width="8"/>
+  <rect x="410" y="130" width="320" height="240" stroke="#222A36" stroke-width="8"/>
+  <rect x="750" y="130" width="320" height="160" stroke="#222A36" stroke-width="8"/>
+  <rect x="750" y="310" width="320" height="220" stroke="#222A36" stroke-width="8"/>
+  <rect x="130" y="390" width="460" height="380" stroke="#222A36" stroke-width="8"/>
+  <rect x="610" y="550" width="460" height="220" stroke="#222A36" stroke-width="8"/>
+  <text x="140" y="760" font-size="46" fill="#222A36" font-family="Arial">PLAN F</text>
+</svg>
