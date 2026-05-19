@@ -1,3 +1,5 @@
+import { assetPath } from "@/lib/assets";
+
 export interface Amenity {
   icon: string;
   label: string;
@@ -366,7 +368,20 @@ const palgharProjects: Project[] = [
   },
 ];
 
-export const projects: Project[] = [...miraRoadProjects, ...palgharProjects];
+const withBasePath = (value?: string) => {
+  if (!value) return value;
+  return value.startsWith("/") ? assetPath(value) : value;
+};
 
-export const miraRoadProjectsList = miraRoadProjects;
-export const palgharProjectsList = palgharProjects;
+const normalizeProjectPaths = (project: Project): Project => ({
+  ...project,
+  image: withBasePath(project.image) || project.image,
+  mapImage: withBasePath(project.mapImage),
+  brochureUrl: withBasePath(project.brochureUrl),
+  galleryImages: project.galleryImages?.map((image) => withBasePath(image) || image),
+});
+
+export const projects: Project[] = [...miraRoadProjects, ...palgharProjects].map(normalizeProjectPaths);
+
+export const miraRoadProjectsList = miraRoadProjects.map(normalizeProjectPaths);
+export const palgharProjectsList = palgharProjects.map(normalizeProjectPaths);

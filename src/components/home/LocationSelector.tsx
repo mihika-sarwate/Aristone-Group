@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MapPin, Building2, ArrowRight } from "lucide-react";
 import { miraRoadProjectsList, palgharProjectsList, Project } from "@/data/projects";
+import { assetPath } from "@/lib/assets";
 
 export function LocationSelector() {
   const [selectedRegion, setSelectedRegion] = useState<"mira" | "palghar" | null>(null);
@@ -127,7 +128,7 @@ export function LocationSelector() {
                           src={project.image}
                           alt={project.name}
                           onError={(e) => {
-                            e.currentTarget.src = "/placeholder.svg";
+                            e.currentTarget.src = assetPath("placeholder.svg");
                           }}
                           className="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-110"
                         />

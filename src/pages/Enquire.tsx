@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useSearchParams } from "react-router-dom";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { assetPath } from "@/lib/assets";
 
 const Enquire = () => {
   const { toast } = useToast();
@@ -48,7 +49,7 @@ const Enquire = () => {
       {/* Hero */}
       <section className="relative h-[40vh] flex items-center justify-center">
         <div className="absolute inset-0">
-          <img src="/images/projects/stock-05.jpg" alt="Enquire" onError={(e) => { e.currentTarget.src = "/placeholder.svg"; }} className="w-full h-full object-cover" />
+          <img src={assetPath("images/projects/stock-05.jpg")} alt="Enquire" onError={(e) => { e.currentTarget.src = assetPath("placeholder.svg"); }} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-charcoal/70" />
         </div>
         <div className="relative z-10 text-center text-white px-6">

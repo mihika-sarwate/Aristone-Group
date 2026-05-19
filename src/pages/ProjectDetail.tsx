@@ -1,4 +1,4 @@
-import { Layout } from "@/components/layout/Layout";
+﻿import { Layout } from "@/components/layout/Layout";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { AmenitiesSection } from "@/components/project/AmenitiesSection";
 import { LocationSection } from "@/components/project/LocationSection";
@@ -9,6 +9,7 @@ import { projects } from "@/data/projects";
 import { ArrowLeft, MapPin, Building2, Users, Ruler } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
+import { assetPath } from "@/lib/assets";
 
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -16,22 +17,22 @@ const ProjectDetail = () => {
   const projectIndex = projects.findIndex((p) => p.id === id);
 
   const stockGalleryPool = [
-    "/images/projects/stock-01.jpg",
-    "/images/projects/stock-02.jpg",
-    "/images/projects/stock-03.jpg",
-    "/images/projects/stock-04.jpg",
-    "/images/projects/stock-05.jpg",
-    "/images/projects/stock-06.jpg",
-    "/images/projects/stock-07.jpg",
-    "/images/projects/stock-08.jpg",
-    "/images/projects/stock-09.jpg",
-    "/images/projects/stock-10.jpg",
-    "/images/projects/stock-11.jpg",
-    "/images/projects/stock-12.jpg",
-    "/images/projects/stock-13.jpg",
-    "/images/projects/stock-14.jpg",
-    "/images/projects/stock-15.jpg",
-    "/images/projects/stock-16.jpg",
+    assetPath("images/projects/stock-01.jpg"),
+    assetPath("images/projects/stock-02.jpg"),
+    assetPath("images/projects/stock-03.jpg"),
+    assetPath("images/projects/stock-04.jpg"),
+    assetPath("images/projects/stock-05.jpg"),
+    assetPath("images/projects/stock-06.jpg"),
+    assetPath("images/projects/stock-07.jpg"),
+    assetPath("images/projects/stock-08.jpg"),
+    assetPath("images/projects/stock-09.jpg"),
+    assetPath("images/projects/stock-10.jpg"),
+    assetPath("images/projects/stock-11.jpg"),
+    assetPath("images/projects/stock-12.jpg"),
+    assetPath("images/projects/stock-13.jpg"),
+    assetPath("images/projects/stock-14.jpg"),
+    assetPath("images/projects/stock-15.jpg"),
+    assetPath("images/projects/stock-16.jpg"),
   ];
 
   const generatedGallery = [
@@ -40,12 +41,12 @@ const ProjectDetail = () => {
     stockGalleryPool[(projectIndex + 9) % stockGalleryPool.length],
   ];
   const floorPlanPool = [
-    "/floorplans/plan-01.svg",
-    "/floorplans/plan-02.svg",
-    "/floorplans/plan-03.svg",
-    "/floorplans/plan-04.svg",
-    "/floorplans/plan-05.svg",
-    "/floorplans/plan-06.svg",
+    assetPath("floorplans/plan-01.svg"),
+    assetPath("floorplans/plan-02.svg"),
+    assetPath("floorplans/plan-03.svg"),
+    assetPath("floorplans/plan-04.svg"),
+    assetPath("floorplans/plan-05.svg"),
+    assetPath("floorplans/plan-06.svg"),
   ];
   const [activeFloorPlan, setActiveFloorPlan] = useState<string | null>(null);
   const [activeConfig, setActiveConfig] = useState<string | null>(null);
@@ -86,7 +87,7 @@ const ProjectDetail = () => {
             src={project.image}
             alt={project.name}
             onError={(e) => {
-              e.currentTarget.src = "/placeholder.svg";
+              e.currentTarget.src = assetPath("placeholder.svg");
             }}
             className="w-full h-full object-cover"
           />
@@ -216,7 +217,7 @@ const ProjectDetail = () => {
                           setExpandedPlan({ src: activeFloorPlan, config: activeConfig });
                         }}
                         onError={(e) => {
-                          e.currentTarget.src = "/placeholder.svg";
+                          e.currentTarget.src = assetPath("placeholder.svg");
                         }}
                         className="w-full aspect-[4/3] object-cover border border-border cursor-zoom-in"
                       />
@@ -295,7 +296,7 @@ const ProjectDetail = () => {
                     src={image}
                     alt={`${project.name} gallery ${index + 1}`}
                     onError={(e) => {
-                      e.currentTarget.src = "/placeholder.svg";
+                      e.currentTarget.src = assetPath("placeholder.svg");
                     }}
                     className="w-full aspect-[4/3] object-cover transition-transform duration-500 hover:scale-105"
                   />
@@ -373,7 +374,7 @@ const ProjectDetail = () => {
               src={expandedPlan.src}
               alt={`${expandedPlan.config} floor plan`}
               onError={(e) => {
-                e.currentTarget.src = "/placeholder.svg";
+                e.currentTarget.src = assetPath("placeholder.svg");
               }}
               className="w-full max-h-[80vh] object-contain border border-border"
             />
@@ -385,3 +386,5 @@ const ProjectDetail = () => {
 };
 
 export default ProjectDetail;
+
+

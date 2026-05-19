@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { Button } from "@/components/ui/button";
+import { assetPath } from "@/lib/assets";
 
 const WHATSAPP_MESSAGE = encodeURIComponent("Hello, I would like to enquire about one of your projects!");
 
@@ -10,10 +11,10 @@ export function CTASection() {
       {/* Background */}
       <div className="absolute inset-0">
         <img
-          src="/images/projects/stock-06.jpg"
+          src={assetPath("images/projects/stock-06.jpg")}
           alt="Luxury interior"
           onError={(e) => {
-            e.currentTarget.src = "/placeholder.svg";
+            e.currentTarget.src = assetPath("placeholder.svg");
           }}
           className="w-full h-full object-cover"
         />

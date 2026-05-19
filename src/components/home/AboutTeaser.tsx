@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { Button } from "@/components/ui/button";
+import { assetPath } from "@/lib/assets";
 
 export function AboutTeaser() {
   return (
@@ -11,10 +12,10 @@ export function AboutTeaser() {
           <AnimatedSection direction="left">
             <div className="relative">
               <img
-                src="/images/projects/stock-12.jpg"
+                src={assetPath("images/projects/stock-12.jpg")}
                 alt="Aristone building"
                 onError={(e) => {
-                  e.currentTarget.src = "/placeholder.svg";
+                  e.currentTarget.src = assetPath("placeholder.svg");
                 }}
                 className="w-full aspect-[4/5] max-h-[68svh] object-cover mx-auto"
               />

@@ -3,6 +3,7 @@ import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { LocationAdvantage } from "@/data/projects";
 import { Plus, Minus, MapPin } from "lucide-react";
+import { assetPath } from "@/lib/assets";
 
 interface LocationSectionProps {
   locationAdvantages: LocationAdvantage[];
@@ -45,10 +46,10 @@ export function LocationSection({ locationAdvantages, mapImage, projectName }: L
             className="relative rounded-lg overflow-hidden"
           >
             <img
-              src={mapImage || "/images/projects/stock-11.jpg"}
+              src={mapImage || assetPath("images/projects/stock-11.jpg")}
               alt={`${projectName} location`}
               onError={(e) => {
-                e.currentTarget.src = "/placeholder.svg";
+                e.currentTarget.src = assetPath("placeholder.svg");
               }}
               className="w-full aspect-[4/3] object-cover"
             />

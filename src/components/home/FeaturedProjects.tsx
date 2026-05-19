@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { projects } from "@/data/projects";
+import { assetPath } from "@/lib/assets";
 
 export function FeaturedProjects() {
   const featuredProjects = projects.slice(0, 3);
@@ -38,7 +39,7 @@ export function FeaturedProjects() {
                     src={project.image}
                     alt={project.name}
                     onError={(e) => {
-                      e.currentTarget.src = "/placeholder.svg";
+                      e.currentTarget.src = assetPath("placeholder.svg");
                     }}
                     className="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-110"
                   />

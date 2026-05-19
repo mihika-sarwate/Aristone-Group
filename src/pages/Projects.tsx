@@ -3,6 +3,7 @@ import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { motion } from "framer-motion";
 import { miraRoadProjectsList, palgharProjectsList } from "@/data/projects";
 import { Link } from "react-router-dom";
+import { assetPath } from "@/lib/assets";
 
 const Projects = () => {
   return (
@@ -10,7 +11,7 @@ const Projects = () => {
       {/* Hero */}
       <section className="relative h-[50vh] flex items-center justify-center">
         <div className="absolute inset-0">
-          <img src="/images/projects/stock-09.jpg" alt="Projects" onError={(e) => { e.currentTarget.src = "/placeholder.svg"; }} className="w-full h-full object-cover" />
+          <img src={assetPath("images/projects/stock-09.jpg")} alt="Projects" onError={(e) => { e.currentTarget.src = assetPath("placeholder.svg"); }} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-charcoal/70" />
         </div>
         <div className="relative z-10 text-center text-white px-6">
@@ -34,7 +35,7 @@ const Projects = () => {
                 <Link to={`/projects/${project.id}`}>
                   <motion.div whileHover={{ y: -10 }} className="group cursor-pointer">
                     <div className="relative overflow-hidden mb-6">
-                      <img src={project.image} alt={project.name} onError={(e) => { e.currentTarget.src = "/placeholder.svg"; }} className="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-110" />
+                      <img src={project.image} alt={project.name} onError={(e) => { e.currentTarget.src = assetPath("placeholder.svg"); }} className="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-110" />
                       <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent" />
                       <div className="absolute bottom-4 left-4 right-4">
                         <span className={`inline-block px-3 py-1 text-xs tracking-wider uppercase font-body mb-2 ${project.status === "Completed" ? "bg-primary text-primary-foreground" : project.status === "Ongoing" ? "bg-white text-charcoal" : "bg-charcoal-light text-white"}`}>{project.status}</span>
@@ -74,7 +75,7 @@ const Projects = () => {
                 <Link to={`/projects/${project.id}`}>
                   <motion.div whileHover={{ y: -10 }} className="group cursor-pointer">
                     <div className="relative overflow-hidden mb-6">
-                      <img src={project.image} alt={project.name} onError={(e) => { e.currentTarget.src = "/placeholder.svg"; }} className="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-110" />
+                      <img src={project.image} alt={project.name} onError={(e) => { e.currentTarget.src = assetPath("placeholder.svg"); }} className="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-110" />
                       <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent" />
                       <div className="absolute bottom-4 left-4 right-4">
                         <span className={`inline-block px-3 py-1 text-xs tracking-wider uppercase font-body mb-2 ${project.status === "Completed" ? "bg-primary text-primary-foreground" : project.status === "Ongoing" ? "bg-white text-charcoal" : "bg-charcoal-light text-white"}`}>{project.status}</span>

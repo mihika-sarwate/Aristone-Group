@@ -1,6 +1,7 @@
 import { Layout } from "@/components/layout/Layout";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { leadership } from "@/data/leadership";
+import { assetPath } from "@/lib/assets";
 
 const About = () => {
   return (
@@ -8,7 +9,7 @@ const About = () => {
       {/* Hero */}
       <section className="relative h-[60vh] flex items-center justify-center">
         <div className="absolute inset-0">
-          <img src="/images/projects/stock-10.jpg" alt="About Aristone" onError={(e) => { e.currentTarget.src = "/placeholder.svg"; }} className="w-full h-full object-cover" />
+          <img src={assetPath("images/projects/stock-10.jpg")} alt="About Aristone" onError={(e) => { e.currentTarget.src = assetPath("placeholder.svg"); }} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-charcoal/70" />
         </div>
         <div className="relative z-10 text-center text-white px-6">
@@ -40,7 +41,7 @@ const About = () => {
               <AnimatedSection key={leader.id} direction={index % 2 === 0 ? "left" : "right"} delay={0.1}>
                 <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? "lg:flex-row-reverse" : ""}`}>
                   <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                    <img src={leader.image} alt={leader.name} onError={(e) => { e.currentTarget.src = "/placeholder.svg"; }} className="w-full aspect-[4/5] object-cover" />
+                    <img src={leader.image} alt={leader.name} onError={(e) => { e.currentTarget.src = assetPath("placeholder.svg"); }} className="w-full aspect-[4/5] object-cover" />
                   </div>
                   <div className={index % 2 === 1 ? "lg:order-1" : ""}>
                     <span className="font-body text-sm tracking-wider uppercase text-primary">{leader.role}</span>
