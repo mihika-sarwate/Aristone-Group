@@ -45,14 +45,20 @@ export function LocationSection({ locationAdvantages, mapImage, projectName }: L
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="relative rounded-lg overflow-hidden"
           >
-            <img
-              src={mapImage || assetPath("images/projects/stock-11.jpg")}
-              alt={`${projectName} location`}
-              onError={(e) => {
-                e.currentTarget.src = assetPath("placeholder.svg");
-              }}
-              className="w-full aspect-[4/3] object-cover"
-            />
+            {mapImage === "To be updated soon" ? (
+              <div className="w-full aspect-[4/3] bg-secondary/50 flex items-center justify-center">
+                <span className="font-display text-2xl italic text-muted-foreground">To be updated soon</span>
+              </div>
+            ) : (
+              <img
+                src={mapImage || assetPath("images/projects/stock-11.jpg")}
+                alt={`${projectName} location`}
+                onError={(e) => {
+                  e.currentTarget.src = assetPath("placeholder.svg");
+                }}
+                className="w-full aspect-[4/3] object-cover"
+              />
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent" />
             <div className="absolute bottom-6 left-6 flex items-center gap-2 text-white">
               <MapPin className="w-5 h-5 text-primary" />

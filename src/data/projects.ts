@@ -34,14 +34,15 @@ export interface Project {
 // Mira Road Projects (7)
 const miraRoadProjects: Project[] = [
   {
-    id: "aristone-bay",
+    id: "hyde-park",
     name: "Hyde Park",
     location: "Mira Road West",
     region: "Mira Road",
     status: "Ongoing",
     description: "To be updated soon",
     fullDescription: "To be updated soon",
-    image: "/images/projects/stock-02.jpg",
+    image: "To be updated soon",
+    galleryImages: ["To be updated soon"],
     height: "To be updated soon",
     units: "To be updated soon",
     area: "To be updated soon",
@@ -53,7 +54,7 @@ const miraRoadProjects: Project[] = [
       { title: "To be updated soon", description: "To be updated soon" }
     ],
     brochureUrl: "",
-    mapImage: "/images/projects/stock-12.jpg",
+    mapImage: "To be updated soon",
     documents: [
       { title: "Environment clearance", url: "/documents/Aristone Builders  SIA_MH_INFRA2_574980_2026_1223623483_-signed.pdf" }
     ],

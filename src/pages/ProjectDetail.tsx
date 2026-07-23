@@ -83,14 +83,20 @@ const ProjectDetail = () => {
       {/* Hero */}
       <section className="relative h-[70vh] flex items-end">
         <div className="absolute inset-0">
-          <img
-            src={project.image}
-            alt={project.name}
-            onError={(e) => {
-              e.currentTarget.src = assetPath("placeholder.svg");
-            }}
-            className="w-full h-full object-cover"
-          />
+          {project.image === "To be updated soon" ? (
+            <div className="w-full h-full bg-secondary flex items-center justify-center">
+              <span className="font-display text-3xl italic text-muted-foreground opacity-50">To be updated soon</span>
+            </div>
+          ) : (
+            <img
+              src={project.image}
+              alt={project.name}
+              onError={(e) => {
+                e.currentTarget.src = assetPath("placeholder.svg");
+              }}
+              className="w-full h-full object-cover"
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-transparent" />
         </div>
         
@@ -292,14 +298,20 @@ const ProjectDetail = () => {
             {(project.galleryImages?.length ? project.galleryImages : generatedGallery).map((image, index) => (
               <AnimatedSection key={`${project.id}-gallery-${index}`} delay={index * 0.1}>
                 <motion.div whileHover={{ y: -6 }} className="overflow-hidden rounded-lg border border-border bg-background">
-                  <img
-                    src={image}
-                    alt={`${project.name} gallery ${index + 1}`}
-                    onError={(e) => {
-                      e.currentTarget.src = assetPath("placeholder.svg");
-                    }}
-                    className="w-full aspect-[4/3] object-cover transition-transform duration-500 hover:scale-105"
-                  />
+                  {image === "To be updated soon" ? (
+                    <div className="w-full aspect-[4/3] bg-secondary/50 flex items-center justify-center">
+                      <span className="font-display text-2xl italic text-muted-foreground">To be updated soon</span>
+                    </div>
+                  ) : (
+                    <img
+                      src={image}
+                      alt={`${project.name} gallery ${index + 1}`}
+                      onError={(e) => {
+                        e.currentTarget.src = assetPath("placeholder.svg");
+                      }}
+                      className="w-full aspect-[4/3] object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                  )}
                 </motion.div>
               </AnimatedSection>
             ))}
