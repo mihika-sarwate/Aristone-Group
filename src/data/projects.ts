@@ -34,7 +34,7 @@ export interface Project {
 // Mira Road Projects (7)
 const miraRoadProjects: Project[] = [
   {
-    id: "aristone-bay",
+    id: "hyde-park",
     name: "Hyde Park",
     location: "Mira Road West",
     region: "Mira Road",
