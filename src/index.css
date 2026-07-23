@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Base colors */
+    --background: 0 0% 100%;
+    --foreground: 220 15% 15%;
+    
+    /* Card surfaces */
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 15%;
+    
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 15%;
+    
+    /* Primary - Luxury Gold RGB(198, 168, 108) = HSL(40, 45%, 60%) */
+    --primary: 40 45% 60%;
+    --primary-foreground: 220 15% 10%;
+    
+    /* Secondary - Soft Grey */
+    --secondary: 220 10% 96%;
+    --secondary-foreground: 220 15% 25%;
+    
+    /* Muted */
+    --muted: 220 10% 96%;
+    --muted-foreground: 220 10% 45%;
+    
+    /* Accent - Deep Gold */
+    --accent: 40 50% 50%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Border & Input */
+    --border: 220 10% 90%;
+    --input: 220 10% 90%;
+    --ring: 40 45% 60%;
+    
+    /* Radius */
+    --radius: 0.5rem;
+    
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 40 45% 60%;
+    --sidebar-primary-foreground: 220 15% 10%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 40 45% 60%;
+    
+    /* Custom - Aristone Brand - Luxury Gold */
+    --gold: 40 45% 60%;
+    --gold-light: 40 50% 70%;
+    --gold-dark: 40 50% 45%;
+    --charcoal: 220 15% 15%;
+    --charcoal-light: 220 10% 25%;
+    --cream: 40 30% 97%;
+    --grey-warm: 30 5% 92%;
+    
+    /* Premium dark background */
+    --premium-dark: 220 20% 10%;
+    --premium-dark-accent: 220 15% 15%;
+  }
+
+  .dark {
+    --background: 220 15% 8%;
+    --foreground: 0 0% 95%;
+    
+    --card: 220 15% 12%;
+    --card-foreground: 0 0% 95%;
+    
+    --popover: 220 15% 12%;
+    --popover-foreground: 0 0% 95%;
+    
+    --primary: 40 50% 65%;
+    --primary-foreground: 220 15% 10%;
+    
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 0 0% 90%;
+    
+    --muted: 220 15% 18%;
+    --muted-foreground: 220 10% 60%;
+    
+    --accent: 40 50% 55%;
+    --accent-foreground: 220 15% 10%;
+    
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 40 50% 65%;
+    
+    --gold: 40 50% 65%;
+    --gold-light: 40 55% 75%;
+    --gold-dark: 40 50% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', serif;
+  }
+}
+
+@layer utilities {
+  /* Text styles */
+  .font-display {
+    font-family: 'Cormorant Garamond', serif;
+  }
+  
+  .font-body {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  /* Premium text gradient - Luxury Gold */
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-[hsl(40,45%,55%)] via-[hsl(40,50%,65%)] to-[hsl(40,45%,55%)] bg-clip-text text-transparent;
+  }
+  
+  /* Solid gold text */
+  .text-gold {
+    color: hsl(40, 45%, 60%);
+  }
+  
+  /* Elegant underline animation */
+  .link-underline {
+    @apply relative;
+  }
+  
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-[1px] bg-primary scale-x-0 origin-right transition-transform duration-300;
+  }
+  
+  .link-underline:hover::after {
+    @apply scale-x-100 origin-left;
+  }
+  
+  /* Gold accent border */
+  .border-gold-accent {
+    @apply border-primary/30;
+  }
+  
+  /* Subtle shadow */
+  .shadow-elegant {
+    box-shadow: 0 4px 30px -5px hsl(40 45% 60% / 0.15);
+  }
+  
+  /* Premium shadow for cards */
+  .shadow-premium {
+    box-shadow: 0 10px 40px -10px hsl(220 15% 15% / 0.15);
+  }
+  
+  /* Gold glow effect */
+  .shadow-gold-glow {
+    box-shadow: 0 0 30px -5px hsl(40 45% 60% / 0.3);
+  }
+  
+  /* Section padding */
+  .section-padding {
+    @apply py-12 md:py-16 lg:py-20 px-6 md:px-10 lg:px-16;
+  }
+  
+  /* Container max width */
+  .container-luxury {
+    @apply max-w-7xl mx-auto;
+  }
+  
+  /* Premium dark section */
+  .bg-premium-dark {
+    background: linear-gradient(180deg, hsl(220, 20%, 10%) 0%, hsl(220, 15%, 12%) 100%);
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--secondary));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.7);
+}
