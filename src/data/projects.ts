@@ -71,7 +71,7 @@ const palgharProjects: Project[] = [
     status: "Ongoing",
     description: "To be updated soon",
     fullDescription: "To be updated soon",
-    image: "To be updated soon",
+    image: "/images/projects/hill1.jpeg",
     galleryImages: [
       "/images/projects/hill1.jpeg",
       "/images/projects/hill2.jpeg",
@@ -104,7 +104,7 @@ const palgharProjects: Project[] = [
     status: "Ongoing",
     description: "To be updated soon",
     fullDescription: "To be updated soon",
-    image: "To be updated soon",
+    image: "/images/projects/chatur1.jpeg",
     galleryImages: [
       "/images/projects/chatur1.jpeg",
       "/images/projects/chatur2.jpeg",
