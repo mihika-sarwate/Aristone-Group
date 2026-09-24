@@ -62,7 +62,72 @@ const miraRoadProjects: Project[] = [
 ];
 
 // Palghar Projects (3)
-const palgharProjects: Project[] = [];
+const palgharProjects: Project[] = [
+  {
+    id: "the-hill-touch",
+    name: "The Hill Touch",
+    location: "Palghar",
+    region: "Palghar",
+    status: "Ongoing",
+    description: "To be updated soon",
+    fullDescription: "To be updated soon",
+    image: "To be updated soon",
+    galleryImages: [
+      "/images/projects/hill1.jpeg",
+      "/images/projects/hill2.jpeg",
+      "/images/projects/hill3.jpeg",
+      "/images/projects/hill4.jpeg",
+      "/images/projects/hill5.jpeg",
+      "/images/projects/hill6.jpeg"
+    ],
+    height: "To be updated soon",
+    units: "To be updated soon",
+    area: "To be updated soon",
+    configurations: ["To be updated soon"],
+    amenities: [
+      { icon: "Clock", label: "To be updated soon" }
+    ],
+    locationAdvantages: [
+      { title: "To be updated soon", description: "To be updated soon" }
+    ],
+    brochureUrl: "",
+    mapImage: "To be updated soon",
+    documents: [
+      { title: "Environment clearance", url: "/documents/Aristone Builders  SIA_MH_INFRA2_574980_2026_1223623483_-signed.pdf" }
+    ],
+  },
+  {
+    id: "shree-chaturbhuj-enclave",
+    name: "Shree Chaturbhuj Enclave",
+    location: "Palghar",
+    region: "Palghar",
+    status: "Ongoing",
+    description: "To be updated soon",
+    fullDescription: "To be updated soon",
+    image: "To be updated soon",
+    galleryImages: [
+      "/images/projects/chatur1.jpeg",
+      "/images/projects/chatur2.jpeg",
+      "/images/projects/chatur3.jpeg",
+      "/images/projects/chatur4.jpeg"
+    ],
+    height: "To be updated soon",
+    units: "To be updated soon",
+    area: "To be updated soon",
+    configurations: ["To be updated soon"],
+    amenities: [
+      { icon: "Clock", label: "To be updated soon" }
+    ],
+    locationAdvantages: [
+      { title: "To be updated soon", description: "To be updated soon" }
+    ],
+    brochureUrl: "",
+    mapImage: "To be updated soon",
+    documents: [
+      { title: "Environment clearance", url: "/documents/Aristone Builders  SIA_MH_INFRA2_574980_2026_1223623483_-signed.pdf" }
+    ],
+  }
+];
 
 const withBasePath = (value?: string) => {
   if (!value) return value;
