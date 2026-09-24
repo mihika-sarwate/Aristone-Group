@@ -6,10 +6,86 @@ import { BrochureButton } from "@/components/project/BrochureButton";
 import { motion } from "framer-motion";
 import { useParams, Link } from "react-router-dom";
 import { projects } from "@/data/projects";
-import { ArrowLeft, MapPin, Building2, Users, Ruler, FileText, Download } from "lucide-react";
+import { ArrowLeft, MapPin, Building2, Users, Ruler, FileText, Download, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { assetPath } from "@/lib/assets";
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
+
+/* ── Gallery Slider sub-component ─────────────────────────────────── */
+function GallerySlider({ images, projectName }: { images: string[]; projectName: string }) {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap());
+    api.on("select", () => setCurrent(api.selectedScrollSnap()));
+  }, [api]);
+
+  return (
+    <div className="relative">
+      <Carousel setApi={setApi} opts={{ loop: true, align: "center" }} className="w-full">
+        <CarouselContent>
+          {images.map((image, index) => (
+            <CarouselItem key={index}>
+              <div className="overflow-hidden rounded-lg">
+                {image === "To be updated soon" ? (
+                  <div className="w-full aspect-[16/9] bg-secondary/50 flex items-center justify-center">
+                    <span className="font-display text-2xl italic text-muted-foreground">To be updated soon</span>
+                  </div>
+                ) : (
+                  <img
+                    src={image}
+                    alt={`${projectName} gallery ${index + 1}`}
+                    onError={(e) => { e.currentTarget.src = assetPath("placeholder.svg"); }}
+                    className="w-full aspect-[16/9] object-cover"
+                  />
+                )}
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+
+        {/* Prev */}
+        <button
+          onClick={() => api?.scrollPrev()}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/80 hover:bg-white shadow-lg flex items-center justify-center transition-all hover:scale-110"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-5 h-5 text-charcoal" />
+        </button>
+
+        {/* Next */}
+        <button
+          onClick={() => api?.scrollNext()}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/80 hover:bg-white shadow-lg flex items-center justify-center transition-all hover:scale-110"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-5 h-5 text-charcoal" />
+        </button>
+      </Carousel>
+
+      {/* Dot indicators */}
+      {count > 1 && (
+        <div className="flex justify-center gap-2 mt-6">
+          {Array.from({ length: count }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => api?.scrollTo(i)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === current ? "bg-primary w-6" : "bg-primary/30 w-2"
+              }`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -282,7 +358,7 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Project Gallery */}
+      {/* Project Gallery – Slider */}
       <section className="section-padding bg-cream">
         <div className="container-luxury">
           <AnimatedSection className="text-center mb-12">
@@ -294,28 +370,10 @@ const ProjectDetail = () => {
             </h2>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {(project.galleryImages?.length ? project.galleryImages : generatedGallery).map((image, index) => (
-              <AnimatedSection key={`${project.id}-gallery-${index}`} delay={index * 0.1}>
-                <motion.div whileHover={{ y: -6 }} className="overflow-hidden rounded-lg border border-border bg-background">
-                  {image === "To be updated soon" ? (
-                    <div className="w-full aspect-[4/3] bg-secondary/50 flex items-center justify-center">
-                      <span className="font-display text-2xl italic text-muted-foreground">To be updated soon</span>
-                    </div>
-                  ) : (
-                    <img
-                      src={image}
-                      alt={`${project.name} gallery ${index + 1}`}
-                      onError={(e) => {
-                        e.currentTarget.src = assetPath("placeholder.svg");
-                      }}
-                      className="w-full aspect-[4/3] object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                  )}
-                </motion.div>
-              </AnimatedSection>
-            ))}
-          </div>
+          <GallerySlider
+            images={project.galleryImages?.length ? project.galleryImages : generatedGallery}
+            projectName={project.name}
+          />
         </div>
       </section>
 
