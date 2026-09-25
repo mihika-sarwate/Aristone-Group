@@ -3,7 +3,7 @@ import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { motion } from "framer-motion";
 import { useParams, Link } from "react-router-dom";
 import { projects } from "@/data/projects";
-import { ArrowLeft, MapPin, Building2, Users, Ruler, ChevronLeft, ChevronRight, Play, Plus, Minus } from "lucide-react";
+import { ArrowLeft, MapPin, Building2, Users, Ruler, ChevronLeft, ChevronRight, Plus, Minus } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { assetPath } from "@/lib/assets";
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
@@ -96,18 +96,28 @@ const PalgharProjectDetail = () => {
 
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoPlaying, setVideoPlaying] = useState(false);
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const handlePlayVideo = () => {
-    if (videoRef.current) {
-      videoRef.current.play();
-      setVideoPlaying(true);
-    }
-  };
+  // Auto-play video when it scrolls into view; pause when out of view
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {/* autoplay blocked */});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.25 }
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
 
   if (!project) {
     return (
@@ -187,48 +197,25 @@ const PalgharProjectDetail = () => {
 
       {/* ── INTRO VIDEO (Hill Touch only) ────────────────────────── */}
       {project.introVideo && (
-        <section className="py-20" style={{ background: "#0f2057" }}>
-          <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
-            <AnimatedSection className="text-center mb-12">
-              <span className="font-body text-sm tracking-[0.3em] uppercase text-[#E07840] mb-4 block">
-                Watch
-              </span>
-              <h2 className="font-display text-4xl md:text-5xl font-light text-white">
-                Project <span className="italic text-[#E07840]">Introduction</span>
-              </h2>
-            </AnimatedSection>
+        <section className="relative overflow-hidden" style={{ background: "#0f2057" }}>
+          {/* top gradient fade from hero */}
+          <div className="absolute top-0 left-0 right-0 h-24 z-10 pointer-events-none"
+               style={{ background: "linear-gradient(to bottom, #0f2057, transparent)" }} />
+          {/* bottom gradient fade into next section */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 z-10 pointer-events-none"
+               style={{ background: "linear-gradient(to top, #f8f9ff, transparent)" }} />
 
-            <AnimatedSection delay={0.2}>
-              <div className="relative rounded-2xl overflow-hidden border-2 border-[#E07840]/40 shadow-2xl group">
-                <video
-                  ref={videoRef}
-                  src={assetPath(project.introVideo.replace(/^\//, ""))}
-                  className="w-full aspect-video object-cover"
-                  controls={videoPlaying}
-                  onPlay={() => setVideoPlaying(true)}
-                  onPause={() => setVideoPlaying(false)}
-                  preload="metadata"
-                  playsInline
-                />
-                {!videoPlaying && (
-                  <div
-                    className="absolute inset-0 flex items-center justify-center cursor-pointer"
-                    style={{ background: "rgba(15,32,87,0.5)" }}
-                    onClick={handlePlayVideo}
-                  >
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="w-20 h-20 rounded-full flex items-center justify-center shadow-2xl"
-                      style={{ background: "#E07840" }}
-                    >
-                      <Play className="w-8 h-8 text-white ml-1" fill="white" />
-                    </motion.div>
-                  </div>
-                )}
-              </div>
-            </AnimatedSection>
-          </div>
+          <video
+            ref={videoRef}
+            src={assetPath(project.introVideo.replace(/^\//, ""))}
+            className="w-full block"
+            style={{ display: "block", maxHeight: "85vh", objectFit: "cover" }}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          />
         </section>
       )}
 
