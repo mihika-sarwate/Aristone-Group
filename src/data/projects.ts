@@ -29,6 +29,7 @@ export interface Project {
   brochureUrl?: string;
   mapImage?: string;
   documents?: { title: string; url: string }[];
+  introVideo?: string;
 }
 
 // Mira Road Projects (7)
@@ -92,6 +93,7 @@ const palgharProjects: Project[] = [
     ],
     brochureUrl: "",
     mapImage: "To be updated soon",
+    introVideo: "/videos/hill_touch.mp4",
   },
   {
     id: "shree-chaturbhuj-enclave",
