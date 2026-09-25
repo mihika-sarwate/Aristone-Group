@@ -92,7 +92,7 @@ function PalgharGallerySlider({ images, projectName }: { images: string[]; proje
 /* ── Main Page ───────────────────────────────────────────────────── */
 const PalgharProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const project = projects.find((p) => p.id === id && p.region === "Palghar");
+  const project = projects.find((p) => p.id === id);
 
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const videoRef = useRef<HTMLVideoElement>(null);
