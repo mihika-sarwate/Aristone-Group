@@ -92,9 +92,6 @@ const palgharProjects: Project[] = [
     ],
     brochureUrl: "",
     mapImage: "To be updated soon",
-    documents: [
-      { title: "Environment clearance", url: "/documents/Aristone Builders  SIA_MH_INFRA2_574980_2026_1223623483_-signed.pdf" }
-    ],
   },
   {
     id: "shree-chaturbhuj-enclave",
@@ -123,9 +120,6 @@ const palgharProjects: Project[] = [
     ],
     brochureUrl: "",
     mapImage: "To be updated soon",
-    documents: [
-      { title: "Environment clearance", url: "/documents/Aristone Builders  SIA_MH_INFRA2_574980_2026_1223623483_-signed.pdf" }
-    ],
   }
 ];
 
